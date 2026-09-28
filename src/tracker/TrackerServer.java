@@ -193,7 +193,7 @@ public class TrackerServer {
     }
 
     public static void main(String[] args) {
-        try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception e) {}
+        gui.UITheme.apply();
         TrackerServer server = new TrackerServer();
         server.startServer();
     }

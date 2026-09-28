@@ -255,11 +255,7 @@ public class MainFrame extends JFrame implements ChatPanel.ChatSendListener, Fil
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            UITheme.apply();
 
             LoginDialog login = new LoginDialog(null);
             login.setVisible(true);

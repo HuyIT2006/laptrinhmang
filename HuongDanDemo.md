@@ -19,7 +19,7 @@ Máy 1 sẽ đóng vai trò là máy chủ trung tâm (Tracker) để các Peer 
 
 ## Bước 2: Khởi Động Peer Đầu Tiên (Trên Máy 1)
 1. Trên Máy 1, chạy file `run_peer.bat`.
-2. Giao diện Đăng Nhập sẽ hiện ra. 
+2. Giao diện Đăng Nhập sẽ hiện ra.
 3. Chú ý dòng chữ màu xanh ở trên cùng: **"IP cua may ban: 192.168.x.x"**. 
    👉 **Hãy ghi chú lại địa chỉ IP này (ví dụ: 192.168.1.10).** Máy 2 sẽ cần IP này để kết nối tới.
 4. Điền tên người dùng (ví dụ: `Máy 1`).
