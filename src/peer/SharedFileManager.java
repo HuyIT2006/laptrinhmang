@@ -36,17 +36,23 @@ public class SharedFileManager {
         return files;
     }
 
-    public void addFile(String filePath) {
+    public boolean addFile(String filePath) {
         File source = new File(filePath);
-        if (source.exists() && source.isFile()) {
-            File dest = new File(sharedFolderPath, source.getName());
-            try {
-                // Copy file vào thư mục shared
-                Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Đã thêm file vào danh sách chia sẻ: " + dest.getName());
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (!source.exists() || !source.isFile()) {
+            return false;
+        }
+
+        File dest = new File(sharedFolderPath, source.getName());
+        try {
+            Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            boolean copied = dest.isFile() && dest.length() == source.length();
+            if (copied) {
+                System.out.println("Đã thêm file vào danh sách chia sẻ: " + dest.getAbsolutePath());
             }
+            return copied;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

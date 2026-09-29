@@ -146,6 +146,9 @@ public class MainFrame extends JFrame implements ChatPanel.ChatSendListener, Fil
                     filePanel.updateSharedFiles(sharedFiles);
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(
+                            this, "Không thể chia sẻ file: " + ex.getMessage(),
+                            "Lỗi", JOptionPane.ERROR_MESSAGE));
                 }
             }).start();
         }

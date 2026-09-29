@@ -109,9 +109,18 @@ public class PeerMain implements ChatServer.ChatListener, FileServer.FileTransfe
     }
     
     public void shareFile(String filePath) {
-        sharedFileManager.addFile(filePath);
         File file = new File(filePath);
-        trackerConnection.shareFile(file.getName(), file.length());
+        if (!sharedFileManager.addFile(filePath)) {
+            throw new IllegalStateException("Không thể sao chép file vào thư mục "
+                    + sharedFileManager.getSharedFolderPath());
+        }
+
+        File sharedFile = sharedFileManager.getFile(file.getName());
+        if (!sharedFile.isFile()) {
+            throw new IllegalStateException("File không tồn tại trong thư mục chia sẻ: "
+                    + sharedFile.getAbsolutePath());
+        }
+        trackerConnection.shareFile(sharedFile.getName(), sharedFile.length());
     }
 
     // --- Forward các sự kiện tới GUI ---
